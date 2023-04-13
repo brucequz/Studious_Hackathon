@@ -20,8 +20,10 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Run the server using: `uvicorn main:app --reload`
+4. Create `.env` file in the root directory of the project by copying `.env.example`. Fill out the fields appropriately.
 
-5. Navigate to [localhost:8000](localhost:8000) in your browser!
+5. Run the server using: `uvicorn main:app --reload`
 
-6. For more, look at the documentation for [fastAPI](https://fastapi.tiangolo.com/) and [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/).
+6. Navigate to [localhost:8000](localhost:8000) in your browser!
+
+7. For more, look at the documentation for [fastAPI](https://fastapi.tiangolo.com/) and [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/).
