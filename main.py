@@ -4,11 +4,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from db import query
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 templates = Jinja2Templates(directory="templates")
 
 
@@ -23,7 +22,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
-# Try navigating to "localhost:8000/test-db/world"
-@app.get("/test-db/{word}")
-def test_db(word: str):
-    return query("SELECT %s, %s", ['hello', word])
+# # Try navigating to "localhost:8000/test-db/world"
+# @app.get("/test-db/{word}")
+# def test_db(word: str):
+#     return query("SELECT %s, %s", ['hello', word])
