@@ -1,7 +1,7 @@
 import openai
 import gradio
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 messages = [{"role": "system",
              "content": "You are a personal tutor that specializes in electrical engineering"}]
@@ -18,7 +18,7 @@ def CustomChatGPT(user_input):
     return ChatGPT_reply
 
 
-demo = gradio.Interface(fn=CustomChatGPT, inputs="text",
-                        outputs="text", title="Your Personal Tutor")
+# demo = gradio.Interface(fn=CustomChatGPT, inputs="text",
+#                         outputs="text", title="Your Personal Tutor")
 
-demo.launch(share=True)
+# demo.launch(share=True)

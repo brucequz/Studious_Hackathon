@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from website_example import CustomChatGPT
 
 app = FastAPI()
 
@@ -13,12 +14,13 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    foo = 'this is a sentence'
+    foo = CustomChatGPT("HELLO")
     return templates.TemplateResponse("index.html", {"request": request, "myArg": foo})
 
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
+    print(CustomChatGPT("HELLO"))
     return {"item_id": item_id, "q": q}
 
 
