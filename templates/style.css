@@ -115,6 +115,30 @@ body {
   overflow: hidden;
 }
 
+.query-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#query {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#submit-btn {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 /* Room 4 */
 
 #tomato {
