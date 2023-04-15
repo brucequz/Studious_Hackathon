@@ -126,6 +126,37 @@
         mainroom.addEventListener("transitionend", enableHover);
       });
 
+      function click_submit() {
+        var inputText = document.getElementById("query").value;
+
+        /// BACKUP PLAN
+        // window.location.href = `${window.location.origin}?prompt=${inputText}`;
+        // return;
+
+        var ChatGPT_response = "custom response";
+
+        // 1. Call FastAPI -> ChatGPT
+        fetch("/", {
+          method: "POST",
+          body: JSON.stringify(inputText),
+        })
+          .then((response) => ChatGPT_response)
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        // 2. ChatGPT_Response = #1
+        // 3. console.log(ChatGPT_Response)
+
+        var paragraphElement = document.getElementById(
+          "aboutme_content_paragraph"
+        );
+        paragraphElement.textContent = ChatGPT_response;
+        console.log(ChatGPT_response);
+      }
+
       function moveUp() {
         disableEdgesAndArrows();
 
@@ -309,7 +340,7 @@
       </div>
       <div class="query-input">
         <input type="text" id="query" placeholder="Enter your query..." />
-        <button id="submit-btn">Submit</button>
+        <button id="submit-btn" onclick="click_submit()">Submit</button>
       </div>
     </div>
 

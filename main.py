@@ -13,15 +13,25 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-    foo = CustomChatGPT("HELLO")
+async def index(request: Request, prompt='Hello'):
+    foo = CustomChatGPT(prompt)
     return templates.TemplateResponse("index.html", {"request": request, "myArg": foo})
+
+
+@app.post("/chatGPT", response_class=HTMLResponse)
+async def chatGPT(request: Request):
+    foo = CustomChatGPT(request.body())
+    return foo
 
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     print(CustomChatGPT("HELLO"))
     return {"item_id": item_id, "q": q}
+
+
+# add API endpoint to call ChatGPT with custom request
+# return ChatGPT response
 
 
 # # Try navigating to "localhost:8000/test-db/world"
