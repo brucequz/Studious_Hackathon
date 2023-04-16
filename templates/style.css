@@ -24,6 +24,21 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.smalllogo {
+  cursor: cell;
+  position: relative;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 7%;
+}
+
 @keyframes wipehv{
   0% {transform: scale(0, 0.25);}
   50% {transform: scale(1, 0.25); color: black;}
@@ -32,6 +47,7 @@ body {
 
 #greeting {
   color: black;
+  position: relative;
   font-size: 50px;
   background-color: black;
   padding-left: 0.5em;
@@ -50,7 +66,7 @@ body {
 #name {
   position: relative;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   animation: slidedown 1.25s forwards;
 }
 
@@ -130,6 +146,90 @@ body {
 }
 
 #submit-btn {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* Room 2 */
+
+#checkbox_room {
+  position: fixed;
+  bottom: 100%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  transition: transform 2s;
+}
+
+#checkbox_header {
+  color: gray;
+  font-size: 25px;
+  opacity: 0;
+}
+
+@keyframes slideup {
+  0% {transform: translate(0, 0); opacity: 0;}
+  100% {transform: translate(-1em, 0); opacity: 1;}
+}
+
+.checkbox_header_animation {
+  animation: slideup 0.75s forwards;
+}
+
+#checkbox_size_wrapper {
+  position: relative;
+  color: white;
+  font-size: 15px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  display: grid;
+  place-items: center;
+}
+
+@keyframes wipevh{
+  0% {width: 1rem; height: 1rem;}
+  30% {width: 1rem; height: 100%;}
+  100% {width: 100%; height: 100%;}
+}
+
+.aboutme_content_animation {
+  animation: wipevh 1.25s forwards;
+}
+
+#checkbox_content {
+  position: absolute;
+  box-sizing: border-box;
+  background-color: gray;
+  border-radius: 15px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  width: 1rem;
+  height: 1rem;
+  overflow: hidden;
+}
+
+.checkbox-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#courses {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#check-btn {
   padding: 10px;
   background-color: #4CAF50;
   color: white;

@@ -12,7 +12,7 @@
     <!-- Personal Content -->
     <link href="templates/style.css" rel="stylesheet" />
     <title>Studious</title>
-    <link href="images/tomato.png" rel="icon" />
+    <link rel="icon" href="templates/Icon.png" sizes="32x32" type="image/png" />
     <meta name="keywords" content="bruce qu, brucequz" />
 
     <!-- JS -->
@@ -29,6 +29,7 @@
       var mainroom;
       var greeting;
       var aboutme_room;
+      var checkbox_room;
 
       // Declare Edge Variables
       var top_edge;
@@ -48,7 +49,10 @@
       // Declare About Me Content
       var current_num_of_chars = 0;
       var aboutme_text = "{{myArg}}";
+      var checkbox_text = "Check these Boxes";
       var typing_delay = 50;
+      const coursesInput = document.getElementById("courses");
+      const checkBtn = document.getElementById("check-btn");
       const queryInput = document.getElementById("query");
       const submitBtn = document.getElementById("submit-btn");
 
@@ -62,6 +66,7 @@
         mainroom = document.querySelector("#mainroom");
         greeting = document.querySelector("#greeting");
         aboutme_room = document.querySelector("#aboutme_room");
+        checkbox_room = document.querySelector("#checkbox_room");
 
         // Initialize Edge Variables
         top_edge = document.querySelector("#top_edge");
@@ -118,6 +123,16 @@
           aboutme_content.classList.toggle("aboutme_content_animation");
         });
         aboutme_content.addEventListener("animationend", aboutmeTypingEffect);
+
+        // Check Box Room Handler
+        // Initialize content-based size of wrapper
+        checkbox_size_wrapper_paragraph.innerHTML = checkbox_text;
+        // Start typewriter effect upon first entry of room
+        checkbox_room.addEventListener("transitionend", function () {
+          checkbox_header.classList.toggle("checkbox_header_animation");
+          checkbox_content.classList.toggle("checkbox_content_animation");
+        });
+        checkbox_content.addEventListener("animationend", checkboxTypingEffect);
 
         // Re-enable Edges After Room Change
         mainroom.addEventListener("transitionend", enableEdgesAndArrows);
@@ -198,7 +213,7 @@
         // Move to Room 2 if in Room 0
         if (room == 0) {
           mainroom.classList.add("exit_left");
-          //document.querySelector('#placeholder').classList.add('enter_right');
+          document.querySelector("#checkbox_room").classList.add("enter_top");
           room = 2;
         }
         // Move to Room 0 if in Room 4
@@ -250,7 +265,9 @@
         // Move to Room 0 if in Room 2
         if (room == 2) {
           mainroom.classList.remove("exit_left");
-          //document.querySelector('#placeholder').classList.remove('enter_right');
+          document
+            .querySelector("#checkout_room")
+            .classList.remove("enter_right");
           room = 0;
         }
       }
@@ -315,38 +332,81 @@
           setTimeout(aboutmeTypingEffect, typing_delay);
         }
       }
+
+      function checkboxTypingEffect() {
+        if (current_num_of_chars < checkbox_text.length) {
+          checkbox_content_paragraph.innerHTML +=
+            checkbox_text.charAt(current_num_of_chars);
+          current_num_of_chars++;
+          setTimeout(checkboxTypingEffect, typing_delay);
+        }
+      }
     </script>
   </head>
   <body>
+    <!-- Icon -->
+
     <!-- Room 0 Contents -->
     <div id="mainroom">
-      <div class="wrapper">
-        <div id="name">
-          <b>I'm Your ChatGPT Tutor</b>
+      <div style="z-index: 3" class="wrapper">
+        <div id="name" style="margin-top: 150px">
+          <b>Your Schedule Manager</b>
         </div>
       </div>
 
       <div class="wrapper">
-        <div id="greeting">
-          <b>Welcome</b>
+        <div id="greeting" , style="margin-top: 50px">
+          <b></b>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div id="logo">
+          <img
+            style="z-index: 0; margin-bottom: 10"
+            src="templates/Logo.png"
+            width="400"
+          />
         </div>
       </div>
     </div>
 
     <!-- Room 1 Contents -->
     <div id="aboutme_room">
-      <div id="aboutme_header">
+      <div class="center">
+        <div id="logo" , style="z-index: 0; margin-bottom: 30">
+          <img src="templates/Icon.png" width="100" />
+        </div>
+      </div>
+      <div id="aboutme_header" , style="margin-bottom: 50px">
         <b>What topic do you want to learn more about ?</b>
       </div>
-      <div id="aboutme_size_wrapper">
+      <div id="aboutme_size_wrapper" , style="margin-bottom: 30px">
         <p id="aboutme_size_wrapper_paragraph"></p>
         <div id="aboutme_content">
           <p id="aboutme_content_paragraph"></p>
         </div>
       </div>
       <div class="query-input">
-        <input type="text" id="query" placeholder="Enter your query..." />
+        <input type="text" id="query" placeholder="Ask away!" />
         <button id="submit-btn" onclick="click_submit()">Submit</button>
+      </div>
+    </div>
+
+    <!-- Room 2 Contents -->
+    <div id="checkbox_room">
+      <div id="checkbox_header">
+        <b>Daily Log: Log your classes!</b>
+      </div>
+      <div id="checkbox_size_wrapper">
+        <p id="checkbox_size_wrapper_paragraph"></p>
+        <div id="checkbox_content">
+          <p id="checkbox_content_paragraph"></p>
+        </div>
+      </div>
+      <div class="checkbox-input">
+        <input type="text" id="courses" placeholder="What are your courses" />
+        <button id="check-btn" onclick="click_submit()">Submit</button>
       </div>
     </div>
 
