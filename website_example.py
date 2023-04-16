@@ -1,7 +1,7 @@
 import openai
 import gradio
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 messages = [{"role": "system",
              "content": "You are a personal tutor that specializes in electrical engineering"}]

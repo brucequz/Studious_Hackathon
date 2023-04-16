@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import Union
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from website_example import CustomChatGPT
@@ -18,10 +18,10 @@ async def index(request: Request, prompt='Hello'):
     return templates.TemplateResponse("index.html", {"request": request, "myArg": foo})
 
 
-@app.post("/chatGPT", response_class=HTMLResponse)
-async def chatGPT(request: Request):
-    foo = CustomChatGPT(request.body())
-    return foo
+@app.get("/chatgpt", response_class=JSONResponse)
+async def chatGPT(request: Request, prompt: str):
+    response = CustomChatGPT(prompt)
+    return response
 
 
 @app.get("/items/{item_id}")
