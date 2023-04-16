@@ -1,5 +1,5 @@
 import openai
-import gradio
+# import gradio
 
 openai.api_key = "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"
 
